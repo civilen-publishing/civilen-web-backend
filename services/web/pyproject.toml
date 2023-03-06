@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "civilenwebapp"
+version = "0.1.0"
+description = "the civil en web app"
+authors = ["Ahmed Eltaher <ahmedheltaher@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.85.0"
+uvicorn = "^0.18.3"
+SQLAlchemy = "^1.4.41"
+pydantic = { version= "^1.10.2", extras = ["email"] }
+psycopg2 = "^2.9.3"
+python-multipart="^0.0.5"
+python-amazon-sp-api = "^0.17.3"
+stripe = "^4.2.0"
+fastapi-login = "^1.8.3"
+alembic = "^1.8.1"
+pyyaml = "^6.0"
+tenacity = "^8.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
