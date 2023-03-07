@@ -15,7 +15,8 @@ class AmazonProductService(
         super(AmazonProductService, self).__init__(amazonProductCrud)
         self.uploadPath = "/src/uploads/images/products"
         self.productCrud = cruds.CRUDProduct(db_session=amazonProductCrud.db_session)
-
+        self.db_session = amazonProductCrud.db_session
+        
     def add(self, product: schemas.AmazonProductCreateAPI, images: list[UploadFile]) -> schemas.AmazonProduct:
         imagePaths = [utils.saveFile(image, self.uploadPath, uuid.uuid4().hex) for image in images]
         try:
@@ -31,7 +32,7 @@ class AmazonProductService(
         return schemas.AmazonProduct(**product.to_dict())
 
     def update(
-        self, productId: int, product: schemas.AmazonProductUpdateAPI, images: list[UploadFile]
+        self, productId: uuid.UUID, product: schemas.AmazonProductUpdateAPI, images: list[UploadFile]
     ) -> schemas.AmazonProduct:
         imagePaths = [utils.saveFile(image, self.uploadPath, uuid.uuid4().hex) for image in images]
         allPaths = imagePaths + product.images if product.images else []
@@ -46,7 +47,7 @@ class AmazonProductService(
 
         return schemas.AmazonProduct(**product.to_dict())
 
-    def delete(self, productId: int) -> None:
+    def delete(self, productId:uuid.UUID) -> None:
         product = self.crud.get(productId)
         for image in product.images:
             utils.removeFile(image)

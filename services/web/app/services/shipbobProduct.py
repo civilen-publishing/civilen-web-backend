@@ -31,7 +31,7 @@ class ShipbobProductService(
         return schemas.ShipbobProduct(**product.to_dict())
 
     def update(
-        self, productId: int, product: schemas.ShipbobProductUpdateAPI, images: list[UploadFile]
+        self, productId: uuid.UUID, product: schemas.ShipbobProductUpdateAPI, images: list[UploadFile]
     ) -> schemas.ShipbobProduct:
         imagePaths = [utils.saveFile(image, self.uploadPath, uuid.uuid4().hex) for image in images]
         allPaths = imagePaths + product.images if product.images else []
@@ -46,7 +46,7 @@ class ShipbobProductService(
 
         return schemas.ShipbobProduct(**product.to_dict())
 
-    def delete(self, productId: int) -> None:
+    def delete(self, productId: uuid.UUID) -> None:
         product = self.crud.get(productId)
         for image in product.images:
             utils.removeFile(image)

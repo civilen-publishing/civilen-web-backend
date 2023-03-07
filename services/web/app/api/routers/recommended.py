@@ -43,7 +43,7 @@ def getAll(
 
 @router.delete("/delete/{recommendedId}", dependencies=[Depends(dependencies.getAdmin)])
 def delete(
-    recommendedId: int,
+    recommendedId: uuid.UUID,
     recommendedService: services.RecommendedService = Depends(dependencies.getRecommendedService),
 ) -> schemas.Recommended:
     """

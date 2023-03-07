@@ -65,7 +65,7 @@ def getAdmin(token: schemas.Admin = Depends(loginManager)) -> schemas.Admin:
 
 
 ################# Services #################
-def getSlideService(crud: cruds.CRUDSlide = Depends(getSlideCRUD)) -> cruds.CRUDSlide:
+def getSlideService(crud: cruds.CRUDSlide = Depends(getSlideCRUD)) -> services.SlideService:
     """
     Get the slide service
 
@@ -74,7 +74,7 @@ def getSlideService(crud: cruds.CRUDSlide = Depends(getSlideCRUD)) -> cruds.CRUD
     return services.SlideService(crud)
 
 
-def getProductService(crud: cruds.CRUDProduct = Depends(getProductCRUD)) -> cruds.CRUDProduct:
+def getProductService(crud: cruds.CRUDProduct = Depends(getProductCRUD)) -> services.ProductService:
     """
     Get the product service
 
@@ -83,7 +83,7 @@ def getProductService(crud: cruds.CRUDProduct = Depends(getProductCRUD)) -> crud
     return services.ProductService(crud)
 
 
-def getErrataService(crud: cruds.CRUDErrata = Depends(getErrataCRUD)) -> cruds.CRUDErrata:
+def getErrataService(crud: cruds.CRUDErrata = Depends(getErrataCRUD)) -> services.ErrataService:
     """
     Get the errata service
 
@@ -92,7 +92,7 @@ def getErrataService(crud: cruds.CRUDErrata = Depends(getErrataCRUD)) -> cruds.C
     return services.ErrataService(crud)
 
 
-def getRecommendedService(crud: cruds.CRUDRecommended = Depends(getRecommendedCRUD)) -> cruds.CRUDRecommended:
+def getRecommendedService(crud: cruds.CRUDRecommended = Depends(getRecommendedCRUD)) -> services.RecommendedService:
     """
     Get the recommended service
 
@@ -101,7 +101,7 @@ def getRecommendedService(crud: cruds.CRUDRecommended = Depends(getRecommendedCR
     return services.RecommendedService(crud)
 
 
-def getOrderService(crud: cruds.CRUDOrder = Depends(getOrderCRUD)) -> cruds.CRUDOrder:
+def getOrderService(crud: cruds.CRUDOrder = Depends(getOrderCRUD)) -> services.OrderService:
     """
     Get the order service
 
@@ -110,7 +110,7 @@ def getOrderService(crud: cruds.CRUDOrder = Depends(getOrderCRUD)) -> cruds.CRUD
     return services.OrderService(crud)
 
 
-def getAmazonProductService(crud: cruds.CRUDAmazonProduct = Depends(getAmazonProductCRUD)) -> cruds.CRUDAmazonProduct:
+def getAmazonProductService(crud: cruds.CRUDAmazonProduct = Depends(getAmazonProductCRUD)) -> services.AmazonProductService:
     """
     Get the amazon product service
 
@@ -121,7 +121,7 @@ def getAmazonProductService(crud: cruds.CRUDAmazonProduct = Depends(getAmazonPro
 
 def getShipbobProductService(
     crud: cruds.CRUDShipbobProduct = Depends(getShipbobProductCRUD),
-) -> cruds.CRUDShipbobProduct:
+) -> services.ShipbobProductService:
     """
     Get the Shipbob product service
 
@@ -132,7 +132,7 @@ def getShipbobProductService(
 
 def getPaymentService(
     crud: cruds.CRUDPayment = Depends(getPaymentCRUD),
-) -> cruds.CRUDPayment:
+) -> services.PaymentService:
     """
     Get the Payment service
 

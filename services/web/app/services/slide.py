@@ -17,7 +17,7 @@ class SlideService(BaseService[cruds.CRUDSlide, schemas.SlideCreateAPI, schemas.
         imagePath = utils.saveFile(image, self.uploadPath, uuid.uuid4().hex)
         return self.slideCrud.create(schemas.SlideCreateCRUD(**slide.dict(), imageUrl=imagePath))
 
-    def delete(self, slideId: int) -> None:
+    def delete(self, slideId: uuid.UUID) -> None:
         slide = self.slideCrud.get(slideId)
         utils.removeFile(slide.imageUrl)
         self.slideCrud.delete(slideId)

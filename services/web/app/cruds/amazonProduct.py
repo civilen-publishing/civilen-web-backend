@@ -1,3 +1,4 @@
+import uuid
 from typing import Optional
 
 from app import models, schemas
@@ -23,7 +24,7 @@ class CRUDAmazonProduct(
         self.db_session.refresh(db_obj)
         return db_obj
 
-    def update(self, productId: str, obj: schemas.AmazonProductUpdateCRUD) -> models.AmazonProduct:
+    def update(self, productId: uuid.UUID, obj: schemas.AmazonProductUpdateCRUD) -> models.AmazonProduct:
         product = super().update(
             productId, schemas.AmazonProductUpdateDB(**obj.dict(exclude={"images"}, exclude_none=True))
         )
