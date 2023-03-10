@@ -50,7 +50,7 @@ class AmazonProductService(
     def delete(self, productId:uuid.UUID) -> None:
         product = self.crud.get(productId)
         for image in product.images:
-            utils.removeFile(image)
+            utils.removeFile(image.url)
         self.crud.delete(productId)
 
     def validateImages(self, images: list[UploadFile]) -> bool:

@@ -20,8 +20,8 @@ class ProductService(BaseService[cruds.CRUDProduct, schemas.ProductCreateCRUD, s
         
     def delete(self, productId: uuid.UUID) -> None:
         product = self.productCrud.get(productId)
-        for image in product.images:
-            utils.removeFile(image)
+        if product is None:
+            return
 
         if product.vendor == ProductVendorEnum.AMAZON:
             self.amazonProductService.delete(productId)
